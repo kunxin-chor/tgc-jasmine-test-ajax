@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="forecasts">
+        
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+    
+        function displayData()
+        {
+            
+        }
+        $(function(){
+    
+             axios.get("https://api.data.gov.sg/v1/environment/2-hour-weather-forecast")
+            .then(function(response) {
+                // console.log(response.data);
+                // console.log('Data finished loading')
+                let forecasts = response.data.items[0].forecasts;
+                console.log(forecasts);
+                // for (let i=0; i < forecasts.length; i++)
+                // {
+                //     let f = forecasts[i];
+                //     $("#forecasts").append(`<div>
+                //         ${f.area} is <strong>${f.forecast}</strong>
+                //     </div>
+                //     `)
+                // }
+                
+                // Python: for eachForecast in forecasts
+                for (let f of forecasts)
+                {
+
+                    $("#forecasts").append(`<div>
+                        ${f.area} is <strong>${f.forecast}</strong>
+                    </div>
+                    `)
+                }
+                
+                displayData();
+            })
+        })
+      
+    </script>
+</body>
+
+</html>

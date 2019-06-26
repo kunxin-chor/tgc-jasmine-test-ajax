@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <ul id="psi">
+            
+        </ul>
+    </div>
+  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+      $(function(){
+    
+          axios.get("https://api.data.gov.sg/v1/environment/psi")
+          .then(function(response){
+             
+              let readings = response.data.items[0].readings.pm25_twenty_four_hourly;
+               $("#psi").append(`<li>Central: ${readings.central}</li>`);
+              $("#psi").append(`<li>North: ${readings.north}</li>`);
+              $("#psi").append(`<li>South: ${readings.south}</li>`); 
+              $("#psi").append(`<li>East: ${readings.east}</li>`); 
+              $("#psi").append(`<li>West: ${readings.west}</li>`);
+            
+          })
+      })
+  </script>
+</body>
+</html>
