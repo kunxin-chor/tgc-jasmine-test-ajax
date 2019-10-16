@@ -11,8 +11,15 @@
 </head>
 
 <body>
-    
+    <ul id="psi">
+        
+    </div>
     <script src="scripts/api.js"></script>
+    <script>
+        getPSIReadings(function(readings){
+            $("#psi").append(`<li>North: ${readings.north}</li>`)
+        });
+    </script>
 </body>
 
 </html>
